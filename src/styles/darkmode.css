@@ -1,0 +1,102 @@
+/* General background and text */
+body.dark,
+.app-container.dark {
+  background: #181824;
+  color: #f8f8f2;
+}
+
+/* Navbar and header */
+body.dark .navbar,
+.app-container.dark .navbar,
+body.dark header,
+.app-container.dark header {
+  background: #23233a;
+  color: #f8f8f2;
+}
+
+/* Nav links */
+body.dark .nav-links a,
+.app-container.dark .nav-links a {
+  color: #f8f8f2;
+}
+body.dark .nav-links a:hover,
+.app-container.dark .nav-links a:hover {
+  color: #c9ada7;
+}
+body.dark .nav-links a::after,
+.app-container.dark .nav-links a::after {
+  background: #c9ada7;
+}
+
+/* Main content */
+body.dark .main-content,
+.app-container.dark .main-content {
+  background: transparent;
+  color: #f8f8f2;
+}
+
+/* Hero section */
+body.dark .hero,
+.app-container.dark .hero {
+  background: transparent;
+}
+body.dark .hero-name,
+.app-container.dark .hero-name {
+  color: #f8f8f2;
+}
+body.dark .hero-avatar,
+.app-container.dark .hero-avatar {
+  border-color: #c9ada7;
+}
+
+/* Project cards */
+body.dark .project-card,
+.app-container.dark .project-card {
+  background: #23233a;
+  color: #f8f8f2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+body.dark .project-title,
+.app-container.dark .project-title {
+  color: #f8f8f2;
+}
+body.dark .project-overlay,
+.app-container.dark .project-overlay {
+  background: rgba(34, 34, 59, 0.95);
+}
+
+/* About section */
+body.dark .about-section,
+.app-container.dark .about-section {
+  background: #23233a;
+  color: #f8f8f2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+body.dark .about-section h2,
+body.dark .about-section p,
+.app-container.dark .about-section h2,
+.app-container.dark .about-section p {
+  color: #f8f8f2;
+}
+
+/* Social icons */
+body.dark .icon-light,
+.app-container.dark .icon-light {
+  display: none;
+}
+body.dark .icon-dark,
+.app-container.dark .icon-dark {
+  display: inline;
+}
+
+/* Toggle button */
+body.dark .dark-toggle-btn .toggle-track,
+.app-container.dark .dark-toggle-btn .toggle-track {
+  background: #23233a;
+}
+body.dark .dark-toggle-btn .toggle-thumb,
+.app-container.dark .dark-toggle-btn .toggle-thumb {
+  background: transparent;
+}
+
+/* (Contact section is always dark, so no override needed) */

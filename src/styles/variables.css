@@ -1,0 +1,33 @@
+/* Light mode palette */
+:root {
+  --color-bg: #f5f7fa;
+  --color-bg-card: #fff;
+  --color-primary: #2d3142;
+  --color-accent: #ef8354;
+  --color-highlight: #bfc0c0;
+  --color-text: #2d3142;
+  --color-link: #007bff;
+  --color-shadow: rgba(45,49,66,0.08);
+
+  --color-contact-bg: #23233a;
+  --color-contact-text: #f8f8f2;
+  --color-contact-border: #bfc0c0;
+  --color-contact-placeholder: #2d3142;
+}
+
+/* Dark mode palette */
+body.dark, .app-container.dark {
+  --color-bg: #181824;
+  --color-bg-card: #23233a;
+  --color-primary: #f8f8f2;
+  --color-accent: #c9ada7;
+  --color-highlight: #9a8c98;
+  --color-text: #f8f8f2;
+  --color-link: #ef8354;
+  --color-shadow: rgba(0,0,0,0.3);
+
+  --color-contact-bg: #23233a;
+  --color-contact-text: #f8f8f2;
+  --color-contact-border: #9a8c98;
+  --color-contact-placeholder: #f8f8f2;
+}

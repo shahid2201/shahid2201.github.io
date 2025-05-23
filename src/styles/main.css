@@ -1,0 +1,264 @@
+/* CSS Variables */
+@import './variables.css';
+
+/* Layout and Navigation */
+@import './layout.css';
+
+/* Hero Section */
+@import './hero.css';
+
+/* Projects Section */
+@import './projects.css';
+
+/* About Section */
+@import './about.css';
+
+/* Contact Section */
+@import './contact.css';
+
+/* Social Links */
+@import './social.css';
+
+/* Dark Mode Toggle */
+@import './toggle.css';
+
+/* Dark Mode Overrides */
+@import './darkmode.css';
+
+/* Overlay menu with fade transition */
+.nav-overlay-menu {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(35, 35, 58, 0.96);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2.5rem;
+  padding-top: 4rem;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1), visibility 0.8s;
+}
+
+.nav-overlay-menu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav-menu-container .nav-overlay-menu {
+  /* When menuOpen is true, add a class like 'open' to nav-overlay-menu */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Fade in links */
+.nav-overlay-menu a {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+}
+
+.nav-menu-container .nav-overlay-menu.open a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Arc with a darker color */
+.nav-overlay-menu::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 250px;
+  background: linear-gradient(90deg, #1a1625 0%, #3a2d4d 100%);
+  border-bottom-left-radius: 700px 300px;
+  border-bottom-right-radius: 700px 300px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
+}
+
+.nav-menu-container .nav-overlay-menu.open::before {
+  opacity: 1;
+}
+
+.nav-overlay-arc-links {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 200px; /* Match the arc height */
+  z-index: 2;
+  padding-top: 0.5rem; /* Updated padding-top */
+  gap: 1.5rem; /* <-- Add this line for spacing between links */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Make sure the links appear above the arc */
+.nav-overlay-menu a {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 1.2rem; /* Decreased from 1.5rem */
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s, font-size 0.2s;
+  font-weight: 600;
+}
+
+.nav-overlay-menu a:hover {
+  color: #ef8354;
+  transform: scale(1.15);
+  font-size: 1.7rem; /* Still increases on hover */
+}
+
+/* Blur everything except the overlay menu */
+.menu-blur > *:not(.navbar):not(.nav-overlay-menu) {
+  filter: blur(8px);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.nav-menu-trigger {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(90deg, #23233a 0%, #2d5fff 100%);
+  color: #fff;
+  border-radius: 2rem;
+  border: 2px solid #2d5fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 12px rgba(45,95,255,0.12);
+  cursor: pointer;
+  transition: 
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    transform 0.15s;
+}
+
+.nav-menu-trigger:hover,
+.nav-menu-trigger:focus {
+  background: #2d5fff;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 4px 24px rgba(45,95,255,0.18);
+  transform: scale(1.07);
+  outline: none;
+}
+
+body {
+  font-family: 'Inter', 'Poppins', 'Segoe UI', 'Roboto', Arial, sans-serif;
+  font-size: 1rem;
+  color: #f5f5fa;
+  background: #23233a;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+html, body, .app-container {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.contact-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5em;
+  color: #2d5fff;
+}
+
+.contact-section p,
+.contact-note {
+  font-size: 1.08rem;
+  font-weight: 400;
+  color: #c9ada7;
+  margin-bottom: 1.2em;
+}
+
+.contact-note {
+  font-style: italic;
+  color: #ef8354;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.7em 1em;
+  border-radius: 0.7em;
+  border: 1.5px solid #3a2d4d;
+  background: #23233a;
+  color: #fff;
+  margin-bottom: 1em;
+  transition: border-color 0.2s;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: #fff;      /* White background in light mode */
+  color: #2d3142;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #2d5fff;
+  outline: none;
+}
+
+body.dark .contact-form input,
+body.dark .contact-form textarea,
+.app-container.dark .contact-form input,
+.app-container.dark .contact-form textarea {
+  background: #23233a;
+  color: #f8f8f2;
+  border-color: #9a8c98;
+}
+
+.contact-form button {
+  font-family: inherit;
+  font-size: 1.08rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #2d5fff 0%, #ef8354 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  padding: 0.7em 2em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.contact-form button:hover {
+  background: #2d5fff;
+  transform: scale(1.07);
+}
+
+.contact-social a img {
+  width: 2.2em;
+  height: 2.2em;
+  margin-right: 0.7em;
+  filter: grayscale(30%);
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.contact-social a:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.13);
+}

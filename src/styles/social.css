@@ -1,0 +1,31 @@
+.social-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.social-links img {
+  width: 28px;
+  height: 28px;
+  filter: grayscale(1);
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.social-links a:hover img {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+
+/* Icon color switching for dark mode */
+.icon-dark {
+  display: none;
+}
+body.dark .icon-light,
+.app-container.dark .icon-light {
+  display: none;
+}
+body.dark .icon-dark,
+.app-container.dark .icon-dark {
+  display: inline;
+}

@@ -1,0 +1,33 @@
+.about-section {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(45,49,66,0.06);
+  padding: 2rem;
+  text-align: center;
+  color: #2d3142;
+}
+
+.about-section h2 {
+  color: #2d3142;
+  margin-bottom: 0.5rem;
+}
+
+.about-section p {
+  color: #2d3142;
+  margin-bottom: 1.5rem;
+}
+
+/* Dark mode override (optional, if not handled in darkmode.css) */
+body.dark .about-section,
+.app-container.dark .about-section {
+  background: #23233a;
+  color: #f8f8f2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark .about-section h2,
+body.dark .about-section p {
+  color: #f8f8f2;
+}

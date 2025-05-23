@@ -1,0 +1,85 @@
+.project-card {
+  width: 300px;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* subtle black shadow in light mode */
+  background: #fff;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.3s; /* Add transform transition */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-card:hover {
+  transform: scale(1.04); /* Slight zoom-in */
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18); /* strong black shadow on hover in light mode */
+}
+
+/* For dark mode, override with a white shadow */
+body.dark .project-card:hover,
+.app-container.dark .project-card:hover {
+  box-shadow: 0 0 24px 4px rgba(255,255,255,0.18), 0 2px 8px rgba(34,34,59,0.18);
+}
+
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden; /* Add this line */
+  border-radius: 12px 12px 0 0; /* Optional: round top corners only */
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-title {
+  margin-top: 12px;
+  color: #22223b;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 34, 59, 0.85);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;      /* Center vertically */
+  justify-content: center;
+  text-align: center;
+  z-index: 3;
+  padding: 20px;
+  pointer-events: none; /* Prevent overlay from blocking hover */
+}
+
+.project-description {
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(60px); /* Start lower for a more visible slide */
+  transition: opacity 0.4s, transform 0.4s;
+  margin-bottom: 10px;
+  pointer-events: auto;
+}
+
+.project-image-container:hover .project-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-image-container:hover .project-description {
+  opacity: 1;
+  transform: translateY(0);
+}

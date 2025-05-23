@@ -1,0 +1,42 @@
+{
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "description": "A portfolio website to showcase web projects.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "web development"
+  ],
+  "author": "Mohammad Shahid",
+  "license": "MIT",
+  "dependencies": {
+    "my-portfolio": "file:",
+    "openai": "^4.103.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^7.6.0",
+    "react-scripts": "^5.0.1"
+  },
+  "homepage": "https://shahid2201.github.io",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

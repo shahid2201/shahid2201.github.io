@@ -1,0 +1,60 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0; /* Remove margin-bottom */
+  background: transparent;
+}
+
+.hero-avatar {
+  width: 180px;      /* Increase this value as desired */
+  height: 180px;     /* Increase this value as desired */
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: left center;
+  border: 4px solid #ef8354;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  margin-bottom: 1rem;
+}
+
+.hero-name {
+  font-family: cursive;
+  color: #2d3142;
+  font-size: 2.4rem; /* Increased from default */
+}
+
+.hero-title, .hero-headline {
+  font-size: 1.5rem; /* Add or increase as needed */
+}
+
+.hero-description, .hero-bio, .hero-text {
+  font-size: 1.15rem; /* Add or increase as needed */
+}
+
+.hero-section {
+  min-height: 100vh;      /* Full viewport height */
+  width: 100vw;           /* Full viewport width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: inherit;    /* Or set a custom background if you want */
+}
+
+/* Add or update this selector for social icons in the hero section */
+.hero-social a img,
+.hero .social-links img {
+  width: 2.8em;
+  height: 2.8em;
+  margin-right: 1em;
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.hero-social a:hover img,
+.hero .social-links a:hover img {
+  transform: scale(1.15);
+  filter: grayscale(0%);
+}

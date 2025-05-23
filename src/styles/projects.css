@@ -1,0 +1,59 @@
+.projects-section {
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.projects-section header {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #23233a; /* or any color/gradient you want */
+  padding: 0.3rem 0; /* Decreased header height */
+  text-align: center;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Only .project-list should wrap cards in a row */
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 24px;
+}
+
+.project-card {
+  background: #fff;
+  border: 1px solid #bfc0c0;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(45,49,66,0.08);
+  color: #2d3142;
+}
+
+.project-card h2 {
+  margin: 0 0 10px;
+}
+
+.project-card p {
+  margin: 0 0 15px;
+}
+
+.project-card a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}

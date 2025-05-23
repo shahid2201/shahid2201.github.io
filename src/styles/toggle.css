@@ -1,0 +1,87 @@
+.dark-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4em 1em; /* Updated padding for a smaller button */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2em;
+  box-shadow: none;
+  position: relative;
+  z-index: 20;
+  margin-left: 17vh;
+}
+
+.toggle-track,
+.toggle-thumb {
+  pointer-events: none; /* Only the button itself is clickable */
+}
+
+.dark-toggle-btn * {
+  pointer-events: none;
+}
+
+.toggle-track {
+  position: relative;
+  width: 48px;   /* Updated width */
+  height: 28px;  /* Updated height */
+  background: #bfc0c0;
+  border-radius: 14px; /* Updated border-radius */
+  display: flex;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.dark-toggle-btn.dark .toggle-track {
+  background: #23233a;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;      /* Updated for new size */
+  left: 3px;     /* Updated for new size */
+  width: 22px;   /* Updated size */
+  height: 22px;  /* Updated size */
+  background: transparent;
+  border-radius: 50%;
+  transition: left 0.3s, background 0.3s;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dark-toggle-btn.dark .toggle-thumb {
+  left: 23px;    /* Updated for new track width */
+  background: transparent;
+}
+
+.toggle-icon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 1.2rem; /* Updated icon size */
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.toggle-icon.sun {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.toggle-icon.moon {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.dark-toggle-btn.dark .toggle-icon.sun {
+  opacity: 0;
+}
+
+.dark-toggle-btn.dark .toggle-icon.moon {
+  opacity: 1;
+}
