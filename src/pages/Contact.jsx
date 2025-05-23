@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BACKEND_URL = 'https://your-backend.onrender.com';
+const BACKEND_URL = 'https://portfolio-backened-7jby.onrender.com/';
 
 const Contact = () => {
   const navigate = useNavigate();
