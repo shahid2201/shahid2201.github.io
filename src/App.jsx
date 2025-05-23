@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import SmoothScroll from 'smooth-scroll';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import About from './pages/About';
@@ -20,6 +21,21 @@ const App = () => {
     document.body.classList.toggle('dark', darkMode);
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
+
+  useEffect(() => {
+    // Initialize smooth-scroll for all anchor links
+    const scroll = new SmoothScroll('a[href*="#"]', {
+      speed: 800, // Adjust speed (ms)
+      speedAsDuration: true,
+      easing: 'easeInOutCubic', // Smoother easing
+      offset: 0,
+      updateURL: false,
+    });
+
+    return () => {
+      scroll.destroy();
+    };
+  }, []);
 
   return (
     <Router>
@@ -46,9 +62,9 @@ const App = () => {
                   className="nav-overlay-arc-links"
                   onMouseLeave={() => setMenuOpen(false)}
                 >
-                  <a href="/">Where the Magic Happens</a>
-                  <a href="/about">Who’s This Genius?</a>
-                  <a href="/contact">Talk to this Future Tech Legend</a>
+                  <Link to="/" onClick={() => setMenuOpen(false)}>Back to Base</Link>
+                  <Link to="/about" onClick={() => setMenuOpen(false)}>Who’s This Genius?</Link>
+                  <Link to="/contact" onClick={() => setMenuOpen(false)}>Talk to this Future Tech Legend</Link>
                 </div>
               </div>
             )}

@@ -1,3 +1,4 @@
+/* App Container and Body */
 body {
   margin: 0;
 }
@@ -14,6 +15,7 @@ body,
   color: #2d3142;
 }
 
+/* Header */
 header {
   background: #2d3142;
   color: #fff;
@@ -21,16 +23,18 @@ header {
   text-align: center;
 }
 
+/* Main Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
+/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Properly distributes space */
+  justify-content: space-between;
   position: relative;
   width: 100vw;
   min-height: 64px;
@@ -43,22 +47,50 @@ header {
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
   cursor: pointer;
 }
 
+/* Navigation Menu */
 .nav-menu-container {
-  flex-grow: 1; /* Ensures it's centered */
+  flex-grow: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex: none;
 }
 
 .nav-menu-trigger {
-  cursor: pointer;
-  font-size: 1.2rem;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(90deg, #23233a 0%, #2d5fff 100%);
   color: #fff;
+  border-radius: 2rem;
+  border: 2px solid #2d5fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 12px rgba(45,95,255,0.12);
+  cursor: pointer;
+  transition: 
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s,
+    transform 0.15s;
 }
 
+.nav-menu-trigger:hover,
+.nav-menu-trigger:focus {
+  background: #2d5fff;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 4px 24px rgba(45,95,255,0.18);
+  transform: scale(1.07);
+  outline: none;
+}
+
+/* Dark Mode Toggle Button */
 .dark-toggle-btn {
   cursor: pointer;
   background: none;
@@ -67,6 +99,7 @@ header {
   color: #fff;
 }
 
+/* Navigation Links */
 .nav-links {
   flex: 1;
   display: flex;
@@ -110,6 +143,7 @@ header {
   color: #ef8354;
 }
 
+/* Main Content */
 .main-content {
   padding: 0;
   margin: 0;
@@ -120,9 +154,138 @@ header {
   box-sizing: border-box;
 }
 
-.nav-menu-container {
+/* Overlay Menu */
+.nav-overlay-menu {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(35, 35, 58, 0.96);
+  z-index: 2000;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  flex: none;
+  gap: 2.5rem;
+  padding-top: 4rem;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1), visibility 0.8s;
+}
+
+.nav-overlay-menu.open,
+.nav-menu-container .nav-overlay-menu,
+.nav-menu-container .nav-overlay-menu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Overlay Menu Links */
+.nav-overlay-menu a {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s, transform 0.2s, font-size 0.2s;
+}
+
+.nav-menu-container .nav-overlay-menu.open a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-overlay-menu a:hover {
+  color: #ef8354;
+  transform: scale(1.15);
+  font-size: 1.7rem;
+}
+
+/* Arc with a darker color */
+.nav-overlay-menu::before,
+.nav-menu-container .nav-overlay-menu.open::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 250px;
+  background: linear-gradient(90deg, #1a1625 0%, #3a2d4d 100%);
+  border-bottom-left-radius: 700px 300px;
+  border-bottom-right-radius: 700px 300px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
+}
+
+.nav-menu-container .nav-overlay-menu.open::before {
+  opacity: 1;
+}
+
+/* Arc Links */
+.nav-overlay-arc-links {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 200px;
+  z-index: 2;
+  padding-top: 0.5rem;
+  gap: 1.5rem;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Blur everything except the overlay menu */
+.menu-blur > *:not(.navbar):not(.nav-overlay-menu) {
+  filter: blur(8px);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.nav-menu-label {
+  display: inline;
+}
+.nav-menu-hamburger {
+  display: none;
+  font-size: 2rem;
+  margin-left: 0.3em;
+  vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7rem 0.5rem;
+  }
+  .logo {
+    font-size: 1.1rem;
+  }
+  .main-content {
+    padding: 0.5rem 0.1rem;
+  }
+  .nav-menu-label {
+    display: none;
+  }
+  .nav-menu-hamburger {
+    display: inline;
+  }
+  .nav-overlay-menu a {
+    font-size: 1.5rem;
+    padding: 1.2em 0;
+  }
+  .nav-overlay-arc-links {
+    gap: 2.5rem;
+  }
 }

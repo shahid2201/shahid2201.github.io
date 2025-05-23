@@ -1,29 +1,37 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const BACKEND_URL = 'https://your-backend.onrender.com';
+
 const Contact = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [suggestion, setSuggestion] = useState('');
+  const [loadingSuggestion, setLoadingSuggestion] = useState(false);
   const debounceRef = useRef();
 
   // Fetch suggestion from your backend
   const fetchSuggestion = async (input) => {
     if (!input) {
       setSuggestion('');
+      setLoadingSuggestion(false);
       return;
     }
+    setLoadingSuggestion(true);
     try {
-      const res = await fetch('/api/sarcastic-suggestion', {
+      const res = await fetch(`${BACKEND_URL}/api/sarcastic-suggestion`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input }),
+        body: JSON.stringify({ message: input }),
       });
       const data = await res.json();
-      setSuggestion(data.suggestion);
+      setSuggestion(data.suggestion); // Only set suggestion!
+      // Add this for debugging:
+      console.log('Sarcastic suggestion:', data.suggestion);
     } catch {
       setSuggestion('');
     }
+    setLoadingSuggestion(false);
   };
 
   // Debounce API calls
@@ -35,7 +43,7 @@ const Contact = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Tab' && suggestion) {
+    if ((e.key === 'Tab' || e.key === 'ArrowRight') && suggestion) {
       e.preventDefault();
       setMessage(suggestion);
     }
@@ -51,7 +59,7 @@ const Contact = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/contact', {
+      const res = await fetch(`${BACKEND_URL}/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -74,40 +82,23 @@ const Contact = () => {
   <p>
     Whether you have an exciting project, a great opportunity, or just a funny meme to share—I'm all ears!
   </p>
+  
   <form className="contact-form" onSubmit={handleSubmit}>
     <input type="text" name="name" placeholder="Your Amazing Name" required />
     <input type="email" name="email" placeholder="Your Best Email" required />
     <div style={{ position: 'relative', width: '100%' }}>
-      {/* Ghost div for suggestion */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          minHeight: 120, // match textarea rows
-          color: '#aaa',
-          opacity: 0.6,
-          fontStyle: 'italic',
-          pointerEvents: 'none',
-          whiteSpace: 'pre-wrap',
-          fontFamily: 'inherit',
-          fontSize: 16,
-          padding: '0.7em 1em',
-          boxSizing: 'border-box',
-          zIndex: 1,
-          overflow: 'hidden',
-          background: 'transparent',
-          // match textarea styles
-        }}
-      >
-        <span style={{ color: 'transparent', userSelect: 'none' }}>{message}</span>
-        {suggestion && message !== suggestion && (
-          <span>{suggestion.slice(message.length)}</span>
-        )}
-      </div>
-      {/* Actual textarea */}
+      {/* Suggestion box above textarea */}
+      {loadingSuggestion ? (
+        <div className="suggestion-box"><strong>Don't sweat! Here's something you can write:</strong><br />Thinking of something witty...</div>
+      ) : (
+        suggestion && (
+          <div className="suggestion-box">
+            <strong>Don't sweat! Here's something you can write:</strong>
+            <br />
+            {suggestion}
+          </div>
+        )
+      )}
       <textarea
         name="message"
         placeholder="Say Something Cool!"
@@ -119,14 +110,12 @@ const Contact = () => {
         style={{
           width: '100%',
           fontSize: 16,
-          background: '#fff', // <-- White background in light mode
           color: '#2d3142',
-          position: 'relative',
-          zIndex: 2,
           boxSizing: 'border-box',
           padding: '0.7em 1em',
           resize: 'none',
           fontFamily: 'inherit',
+          marginTop: '0.5em'
         }}
         autoComplete="off"
       />
@@ -146,7 +135,6 @@ const Contact = () => {
     </a>
   </div>
 </section>
-
   );
 };
 
