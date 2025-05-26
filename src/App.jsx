@@ -125,12 +125,11 @@ const App = () => {
                       onClick={() => setDarkMode(dm => !dm)}
                       aria-label="Toggle dark mode"
                     >
-                      <span className="toggle-track">
-                        <span className="toggle-thumb">
-                          <span className="toggle-icon sun">☀️</span>
-                          <span className="toggle-icon moon">🌙</span>
-                        </span>
-                      </span>
+                      <div className="toggle-track">
+                        <span className="toggle-icon sun">☀️</span>
+                        <span className="toggle-thumb"></span>
+                        <span className="toggle-icon moon">🌙</span>
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -152,12 +151,11 @@ const App = () => {
               onClick={() => setDarkMode(dm => !dm)}
               aria-label="Toggle dark mode"
             >
-              <span className="toggle-track">
-                <span className="toggle-thumb">
-                  <span className="toggle-icon sun">☀️</span>
-                  <span className="toggle-icon moon">🌙</span>
-                </span>
-              </span>
+              <div className="toggle-track">
+                <span className="toggle-icon sun">☀️</span>
+                <span className="toggle-thumb"></span>
+                <span className="toggle-icon moon">🌙</span>
+              </div>
             </button>
           )}
         </nav>
