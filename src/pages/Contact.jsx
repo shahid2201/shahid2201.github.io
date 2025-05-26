@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const BACKEND_URL = 'https://iiypy3pqsf.execute-api.ca-central-1.amazonaws.com/prod';
 
@@ -8,6 +9,7 @@ const Contact = () => {
   const [message, setMessage] = useState('');
   const [suggestion, setSuggestion] = useState('');
   const [loadingSuggestion, setLoadingSuggestion] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState('');
   const debounceRef = useRef();
 
   // Fetch suggestion from your backend
@@ -46,13 +48,41 @@ const Contact = () => {
     }
   };
 
+  const handleRecaptcha = (token) => {
+    setRecaptchaToken(token);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
+    // Basic validation and sanitization
+    const name = form.name.value.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const email = form.email.value.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const messageVal = form.message.value.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    // Simple email format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!name || !email || !messageVal) {
+      alert('All fields are required.');
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    if (name.length > 100 || email.length > 100 || messageVal.length > 2000) {
+      alert('Input too long.');
+      return;
+    }
+    if (!recaptchaToken) {
+      alert('Please complete the reCAPTCHA.');
+      return;
+    }
     const data = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value
+      name,
+      email,
+      message: messageVal,
+      recaptchaToken
     };
 
     try {
@@ -140,6 +170,11 @@ const Contact = () => {
         autoComplete="off"
       />
     </div>
+    <ReCAPTCHA
+      sitekey="6Le9FUkrAAAAAKmz6Y0cJ8o3fJ8TCnszlR80pZ4C"
+      onChange={handleRecaptcha}
+      style={{ margin: '1em auto', display: 'flex', justifyContent: 'center' }}
+    />
     <button type="submit">Shoot Your Message 🚀</button>
   </form>
   <p className="contact-note">
