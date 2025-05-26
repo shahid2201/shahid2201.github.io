@@ -148,4 +148,11 @@ html, body, .app-container {
     margin-left: 1rem;
     margin-right: 0;
   }
+  .logo {
+    font-size: 1.1rem !important;
+    padding: 0.2em 0.5em !important;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+    line-height: 1.2;
+  }
 }

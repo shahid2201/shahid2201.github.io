@@ -13,6 +13,8 @@
   --color-contact-text: #f8f8f2;
   --color-contact-border: #bfc0c0;
   --color-contact-placeholder: #2d3142;
+
+  --font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* Dark mode palette */
@@ -30,4 +32,9 @@ body.dark, .app-container.dark {
   --color-contact-text: #f8f8f2;
   --color-contact-border: #9a8c98;
   --color-contact-placeholder: #f8f8f2;
+}
+
+/* Apply the font globally */
+body, html, .app-container {
+  font-family: var(--font-family);
 }

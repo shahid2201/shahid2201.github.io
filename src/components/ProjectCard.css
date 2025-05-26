@@ -61,7 +61,6 @@ body.dark .project-card:hover,
   justify-content: center;
   text-align: center;
   z-index: 3;
-  padding: 20px;
   pointer-events: none; /* Prevent overlay from blocking hover */
 }
 

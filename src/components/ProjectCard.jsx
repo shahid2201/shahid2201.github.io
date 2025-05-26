@@ -16,6 +16,9 @@ const ProjectCard = ({ children, title, description, image, ...props }) => {
     return () => observer.disconnect();
   }, []);
 
+  // Detect mobile
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   return (
     <div
       ref={ref}
@@ -24,11 +27,17 @@ const ProjectCard = ({ children, title, description, image, ...props }) => {
     >
       <div className="project-image-container">
         <img src={image} alt={title} className="project-image" />
-        <div className="project-overlay">
-          <div className="project-description">{description}</div>
-        </div>
+        {!isMobile && (
+          <div className="project-overlay">
+            <div className="project-description">{description}</div>
+          </div>
+        )}
       </div>
       <div className="project-title">{title}</div>
+      {isMobile && <div className="project-divider"></div>}
+      {isMobile && (
+        <div className="project-description">{description}</div>
+      )}
       {children}
     </div>
   );
