@@ -94,6 +94,27 @@ const Contact = () => {
               <strong>Don't sweat! Here's something you can write:</strong>
               <br />
               {suggestion}
+              <button
+                type="button"
+                className="accept-suggestion-btn"
+                style={{
+                  marginTop: '0.7em',
+                  padding: '0.4em 1em',
+                  borderRadius: '0.5em',
+                  border: 'none',
+                  background: '#2d5fff',
+                  color: '#fff',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  fontSize: '0.98em',
+                  display: 'block',
+                  marginLeft: 'auto',
+                  marginRight: 'auto'
+                }}
+                onClick={() => setMessage(message ? message + ' ' + suggestion : suggestion)}
+              >
+                Use Suggestion
+              </button>
             </div>
           )
         )
