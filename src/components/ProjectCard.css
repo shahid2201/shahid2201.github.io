@@ -48,6 +48,7 @@ body.dark .project-card:hover,
 
 .project-overlay {
   position: absolute;
+  padding: 0;
   top: 0;
   left: 0;
   width: 100%;
