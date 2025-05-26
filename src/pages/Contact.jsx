@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BACKEND_URL = 'https://portfolio-backened-7jby.onrender.com/';
+const BACKEND_URL = 'https://iiypy3pqsf.execute-api.ca-central-1.amazonaws.com/prod';
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -25,16 +25,13 @@ const Contact = () => {
         body: JSON.stringify({ message: input }),
       });
       const data = await res.json();
-      setSuggestion(data.suggestion); // Only set suggestion!
-      // Add this for debugging:
-      console.log('Sarcastic suggestion:', data.suggestion);
+      setSuggestion(data.suggestion);
     } catch {
       setSuggestion('');
     }
     setLoadingSuggestion(false);
   };
 
-  // Debounce API calls
   const handleChange = (e) => {
     const val = e.target.value;
     setMessage(val);
@@ -88,15 +85,17 @@ const Contact = () => {
     <input type="email" name="email" placeholder="Your Best Email" required />
     <div style={{ position: 'relative', width: '100%' }}>
       {/* Suggestion box above textarea */}
-      {loadingSuggestion ? (
-        <div className="suggestion-box"><strong>Don't sweat! Here's something you can write:</strong><br />Thinking of something witty...</div>
-      ) : (
-        suggestion && (
-          <div className="suggestion-box">
-            <strong>Don't sweat! Here's something you can write:</strong>
-            <br />
-            {suggestion}
-          </div>
+      {message && (
+        loadingSuggestion ? (
+          <div className="suggestion-box"><strong>Don't sweat! Here's something you can write:</strong><br />Thinking of something witty...</div>
+        ) : (
+          suggestion && (
+            <div className="suggestion-box">
+              <strong>Don't sweat! Here's something you can write:</strong>
+              <br />
+              {suggestion}
+            </div>
+          )
         )
       )}
       <textarea

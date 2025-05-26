@@ -42,3 +42,110 @@ html, body, .app-container {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Hide hamburger on desktop, show on mobile */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  display: block;
+  height: 4px;
+  margin: 4px 0;
+  background: #222;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Navbar container: space-between for logo left, hamburger right */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 2rem;
+  height: 64px;
+}
+
+/* On desktop, keep nav-menu-container default (no margin-left: auto) */
+.nav-menu-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Hamburger always on the right in nav-menu-container */
+.nav-hamburger {
+  margin-left: 1rem;
+  margin-right: 0;
+}
+
+/* Overlay menu slides in from right (already set) */
+@media (max-width: 768px) {
+  .nav-menu-trigger {
+    display: none;
+  }
+  .nav-hamburger {
+    display: flex;
+  }
+  .nav-overlay-menu {
+    right: 0;
+    left: auto;
+    /* already slides in from right */
+  }
+}
+
+/* Dark mode toggle button: hide on desktop, show mobile-only in overlay menu */
+@media (max-width: 768px) {
+  .navbar > .dark-toggle-btn {
+    display: none !important;
+  }
+  .nav-overlay-arc-links .dark-toggle-btn.mobile-only {
+    display: flex !important;
+    align-self: flex-start;
+  }
+}
+
+/* Hide the mobile-only toggle on desktop, show only in overlay on mobile */
+.dark-toggle-btn.mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  /* Hide navbar toggle on mobile */
+  .navbar > .dark-toggle-btn {
+    display: none !important;
+  }
+  /* Show toggle only inside overlay menu on mobile */
+  .nav-overlay-arc-links .dark-toggle-btn.mobile-only {
+    display: flex !important;
+    align-self: flex-start;
+  }
+  .nav-hamburger.mobile-only {
+    display: flex !important;
+  }
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+  }
+  .logo {
+    order: 0;
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .nav-menu-container {
+    order: 1;
+  }
+  .nav-hamburger.mobile-only {
+    order: 2;
+    margin-left: 1rem;
+    margin-right: 0;
+  }
+}
